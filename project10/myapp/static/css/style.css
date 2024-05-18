@@ -1,9 +1,0 @@
-#calendar {
-    width: 300px; /* Set the width of the calendar */
-    height: 300px; /* Set the height of the calendar */
-}
-
-.fc-day {
-    padding: 5px; /* Adjust padding to make day cells smaller */
-    font-size: 12px; /* Adjust font size to make text smaller */
-}
