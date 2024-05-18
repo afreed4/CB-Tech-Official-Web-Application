@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% load static %}
+  {% block content %}
+    <img src="{% static '/images/1930264_check_complete_done_green_success_icon.png' %}">
+    <h3>this is your Account</h3>
+    <h2> WELCOME BACK {{ request.user.username }}</h2>
+    <button class="btn btn danger"><a href="{% url 'logout' %}">Logout</a></button><br>
+    {% endblock %}
+</body>
+</html>

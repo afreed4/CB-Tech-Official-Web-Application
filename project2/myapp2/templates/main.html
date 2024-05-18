@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    {% include 'menu.html' %}
+   
+    {% block content %}
+
+    {% endblock %}
+
+    <img style="height: 200px;" width="400px" src="{% static 'image/maradona.jpg' %}" />
+    <img style="height: 200px;" width="400px" src="{% static 'image/wp2298707-gennaro-gattuso-wallpapers.jpg' %}" />
+    <img style="height: 200px;" width="400px" src="{% static 'image/Maldini_Wallpaper.jpeg' %}" />
+    <img style="height: 200px;" width="400px" src="{% static 'image/messi-iphone-fhku23h1ap4e31ql.jpg' %} /">
+</body>
+</html>

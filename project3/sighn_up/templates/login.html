@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+    {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/CSS/login.css' %}">
+</head>
+<body>
+   <div class="container custom-container mt-5 my-5 p-10 text-center text-bg-info">
+    <a href="{% url 'home' %}">Home</a><br>
+   </div>
+    {% block content%}
+    <div class="container mt-4 my-5 py-10 text-center bg-dark text-light">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">SUBMIT</button>
+    </form>
+      <p>{{ error }}</p>
+      <a href="{% url 'sighnup' %}">Dont have an Account? Sign Up Here!</a><br/>
+   </div>
+    
+    {% endblock %}
+</body>
+</html>

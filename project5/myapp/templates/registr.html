@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="container mt-5">
+                <div class="mb-3">
+                    <label for="username" class="form-label"></label>
+                    <input type="text" id="username" class="form-control" placeholder="Username" name="username">
+                </div>
+                <div class="mb-3">
+                     <label for="firstname" class="form-label"></label>
+                     <input id="firstname" type="text" placeholder="First Name" class="form-control" required name="firstname">
+                </div>
+                <div class="mb-3">
+                     <label for="lastname" class="form-label"></label>
+                     <input id="lastname" type="text" placeholder="Last Name" class="form-control" required name="lastname">
+                </div>
+                <div class="mb-3">
+                    <label for="mail" class="form-label"></label>
+                     <input id="mail" type="email" placeholder="Email" class="form-control" required name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="pass1" class="form-label"></label>
+                     <input id="pass1" type="password" placeholder="Password" class="form-control" required name="pass1">
+                </div>
+                <div class="mb-3">
+                    <label for="pass2" class="form-label"></label>
+                     <input id="pass2" type="password" placeholder="Confrim Password" class="form-control" required name="pass2">
+                </div>
+                <button class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    {% endblock %}
+</body>
+</html>

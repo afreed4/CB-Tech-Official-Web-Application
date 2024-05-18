@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'menu.html' %}
+    
+    <h3>THIS IS FROM <h1>CREATE</h1></h3>
+   
+    <form method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+        <label for="your_name" >Name:</label>
+        <input id="your_name" type="text" name="name"  maxlength="100" required>
+        <label for="number" >Number:</label>
+        <input id="number" type="number" name="number" required>
+        <label for="club" >Club:</label>
+        <input id="club" type="text" name="club" required>
+        <button id="button" type="submit" value="Search">Submit</button>
+    </form>
+    <br>
+    
+   <script src="/static/JavaScript/javascript.js"></script>
+</body>
+</html>

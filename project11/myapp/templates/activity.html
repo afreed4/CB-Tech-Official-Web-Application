@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   {% extends 'base.html' %}
+
+   {% block content %}
+   <div class="container mt-4 py-5">
+    <form method="post" action="{% url 'activity' %}"  enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        <label for="event">Choose Event Type</label>
+        <select name="event" id="event">
+            <option value="event">Event</option>
+            <option value="class">Class</option>
+            <option value="venue">Venue</option>
+        </select>
+
+        <label for="title">Title</label>
+        <input name="title" required type="text" id="title">
+
+        <label for="slug">Slug</label>
+        <input type="text" name="slug" id="slug">
+
+        <label for="discription">Dicsription</label>
+        <input type="text" name="discription" id="discription">
+
+        <button class="btn btn-primary">Submit</button>
+    </form>
+   {% endblock %}
+</div>
+</body>
+</html>

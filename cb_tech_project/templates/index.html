@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href={% static 'images/favicon1.png'%}>
+    <link rel="stylesheet" href={% static 'css/style2.css'%}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <title>CB TECH</title>
+</head>
+<body>
+           
+<!-- Staff Card -->
+
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="card"> 
+            <img src="{% static 'images/user1.png'%}">
+            <p class="title">Staffs</p>
+            <p><button><a href="stafflogin">Login</a></button></p>
+        </div>
+    </div>
+</div>
+
+{% comment %} Accountant Card {% endcomment %}
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="card">
+            <img src="{% static 'images/bill.png'%}" >
+            <p  class="title">Accountant</p>
+            <p><button><a href="accountantlogin">Login</a></button></p>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Card -->
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="card">
+            <img src="{% static 'images/administrator1.png'%}" >
+            <p  class="title">Admin</p>
+            <p><button><a href="adminlogin">Login</a></button></p>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

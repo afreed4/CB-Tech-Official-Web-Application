@@ -1,0 +1,460 @@
+{% extends 'admin_template/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+                        <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3>{{ enquiry_count }}</h3>
+
+                  <p>Total Enquiries</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'manage_enquiry' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3>{{ registered_count }}</h3>
+
+                  <p>Total Registration</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'manage_registeration' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-danger">
+                <div class="inner">
+                  <h3>{{ staff_count }}</h3>
+
+                  <p>Total Staffs</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'manage_staff' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3>{{ course_count }}</h3>
+
+                  <p>Total Courses</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="{% url 'manage_course' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            
+          </div>
+          <!-- /.row -->
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- DONUT CHART -->
+              <div class="card card-secondary" id="myDiv">
+                <div class="card-header">
+                  <h3 class="card-title">Total Enquiry VS Total Registration</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <canvas id="donutChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                    <label for="month_enq">Month:</label>
+                    <select name="month_enq" class="form-control" id="month-select"></select><br>
+                    <label for="year">Year:</label>
+                    <select name="year_enq" class="form-control" id="year-select"></select>
+                  </form>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              
+            </div>
+
+            <div class="col-lg-6">
+              <!-- DONUT CHART -->
+              <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Counsellor Wise Registrations</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <canvas id="Chart2" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                    <label for="month">Month:</label>
+                    <select name="month_cons" class="form-control" id="month-Select-1">
+                    </select><br>
+                    <label for="year">Year:</label>
+                    <select name="year_cons" class="form-control" id="year-select-1"></select>
+                  </form>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              
+            </div>
+          </div>
+
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Enquiries</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Lead Type</th>
+                    <th>Status Of Enquiry</th>
+                    <th>Date Of Enquiry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Enquiry in Enquiries %}
+                    <tr>
+                    <td>{{ Enquiry.name }}</td>
+                    <td>{{ Enquiry.phone_number }}</td>
+                    <td>{{ Enquiry.email_id }}</td>
+                    <td>{{ Enquiry.lead_type }}</td>
+                    <td>{{ Enquiry.status_of_enquiry }}</td>
+                    <td>{{ Enquiry.date_of_enquiry|date:'d-b-Y' }}</td>
+
+                    <td>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                    <tr><td colspan="6"><a href="{% url 'manage_enquiry' %}">See More...</a></td></tr>
+                </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        
+        </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  <script>
+    $(document).ready(function() {
+        
+        var month_enq ="{{ month_enq }}";
+        var year_enq = "{{ year_enq }}"
+        var month_cons = "{{ month_cons }}"
+        var year_cons = "{{ year_cons }}"
+
+        // Get the current year
+          var currentYear = new Date().getFullYear();                   //Year generator for enquiry registration chart dropdown
+
+          // Get the dropdown/select element
+          var dropdown = document.getElementById("year-select");
+
+          // Loop through the years from 2015 to the current year
+          for (var year = 2015; year <= currentYear; year++) {
+            // Create an option element for each year
+            var option = document.createElement("option");
+            option.value = year;
+            option.text = year;
+            
+            if (year === year_enq) {
+              option.selected = true;
+            }
+
+
+            // Add the option to the dropdown/select element
+            dropdown.appendChild(option);
+          }
+
+        // Get the dropdown/select element
+        var dropdown = document.getElementById("month-select");          //Month generator for enquiry registration chart dropdown
+
+        // Array of month names
+        var months = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+
+        // Loop through the months from 1 to 12
+        for (var i = 1; i <= 12; i++) {
+          // Create an option element for each month
+          var option = document.createElement("option");
+          option.value = i;
+          option.text = months[i - 1];
+
+          // Check if the current month matches the value of month_enq
+          if (i === month_enq) {
+            option.selected = true;
+          }
+
+          // Add the option to the dropdown/select element
+          dropdown.appendChild(option);
+        }
+
+
+        // Get the current year
+        var currentYear = new Date().getFullYear();                   //Year generator for counsellor registration chart dropdown
+
+        // Get the dropdown/select element
+        var dropdown = document.getElementById("year-select-1");
+
+        // Loop through the years from 2015 to the current year
+        for (var year = 2015; year <= currentYear; year++) {
+          // Create an option element for each year
+          var option = document.createElement("option");
+          option.value = year;
+          option.text = year;
+          
+          if (year === year_cons) {
+            option.selected = true;
+          }
+
+
+          // Add the option to the dropdown/select element
+          dropdown.appendChild(option);
+        }
+
+        // Get the dropdown/select element
+        var dropdown = document.getElementById("month-Select-1");          //Month generator for counsellor registration chart dropdown
+
+        // Loop through the months from 1 to 12
+        for (var i = 1; i <= 12; i++) {
+        // Create an option element for each month
+          var option = document.createElement("option");
+          option.value = i;
+          option.text = months[i - 1];
+
+          // Check if the current month matches the value of month_enq
+          if (i === month_cons) {
+            option.selected = true;
+          }
+
+          // Add the option to the dropdown/select element
+          dropdown.appendChild(option);
+        }
+
+
+
+      var enquiry_count = "{{ enquiry_count_chart }}";              //values for chart when page loads
+      var registered_count = "{{  registered_count_chart }}";
+      drawchart(enquiry_count,registered_count)
+
+      var counsellor_name_list = "{{ counsellor_name_list | safe }}";
+      console.log(counsellor_name_list,"counsellor name lists");
+      var counsellor_registeration_count = "{{  counsellor_registeration_count|safe }}";
+      console.log(counsellor_registeration_count,"counsellor_registeration_count");
+      drawchart2(counsellor_name_list,counsellor_registeration_count)
+      
+
+            //The functions  that call the AJAX datas that changes the chart1 data 
+      var monthSelect = document.getElementById('month-select');
+      var yearSelect = document.getElementById('year-select');
+      monthSelect.addEventListener('change', () => {
+        console.log('Month select changed');
+        var selectedMonth = monthSelect.value;
+        var selectedyear = yearSelect.value;
+        loadCounts(selectedMonth, selectedyear);;
+      });
+
+      yearSelect.addEventListener('change', () => {
+        console.log('Year select changed');
+        var selectedMonth = monthSelect.value;
+        var selectedyear = yearSelect.value;
+        loadCounts(selectedMonth, selectedyear);
+      });
+
+                  //The functions  that call the AJAX datas that changes the chart2 data 
+      
+      var month_Select_1 = document.getElementById('month-Select-1');
+      var year_Select_1 = document.getElementById('year-select-1');
+      month_Select_1.addEventListener('change', () => {
+        console.log('Month select changed chart 2');
+        var selectedMonth = month_Select_1.value;
+        var selectedyear = year_Select_1.value;
+        loadCounts1(selectedMonth, selectedyear);;
+      });
+
+      year_Select_1.addEventListener('change', () => {
+        console.log('Year select changed chart2');
+        var selectedMonth1 = month_Select_1.value;
+        var selectedyear1 = year_Select_1.value;
+        loadCounts1(selectedMonth1, selectedyear1);
+      });
+    })
+   
+
+    function loadCounts(month, year) {                        //Ajax for changing the chart data value when selection is changed
+          
+          const data={ month:month,year:year }
+          const queryParams = new URLSearchParams();
+          queryParams.append('data', JSON.stringify(data));
+
+          const url = '/update_enq_reg/?' + queryParams.toString();
+          fetch(url)
+          .then(response => response.json())
+          .then(jsonData => {
+            // Parse the received JSON object
+            console.log(jsonData);
+            var enquiry_count = jsonData.enquiry_count_chart
+            var registered_count = jsonData.registered_count
+            console.log(enquiry_count,registered_count)
+            drawchart(enquiry_count,registered_count);
+          })
+          .catch(error => {
+            console.log(error)
+            // handle the error
+          });
+  	}
+
+
+    function loadCounts1(month, year) {                        //Ajax for changing the chart data value when selection is changed
+          
+          const data={ month:month,year:year }
+          const queryParams = new URLSearchParams();
+          queryParams.append('data', JSON.stringify(data));
+
+          const url = '/update_cons_reg/?' + queryParams.toString();
+          fetch(url)
+          .then(response => response.json())
+          .then(jsonData => {
+            // Parse the received JSON object
+            console.log(jsonData);
+            var counsellor_name_list = jsonData.counsellor_name_list
+            var counsellor_registeration_count = jsonData.counsellor_registeration_count
+            console.log(counsellor_name_list,counsellor_registeration_count)
+            drawchart2(counsellor_name_list,counsellor_registeration_count);
+          })
+          .catch(error => {
+            console.log(error)
+            // handle the error
+          });
+  	}
+
+
+
+    var donutChart; // Declare the donutChart variable outside the drawchart function
+    var chartRendered;
+
+  function drawchart(enquiry_count, registered_count) {
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d');
+    var donutData = {
+      labels: ['Enquiries', 'Registrations'],
+      datasets: [
+        {
+          data: [(enquiry_count - registered_count), registered_count],
+          backgroundColor: ['#3c8dbc', '#d2d6de', '#f56954', '#00a65a', '#f39c12', '#00c0ef'],
+        },
+      ],
+    };
+    var donutOptions = {
+      maintainAspectRatio: false,
+      responsive: true,
+    };
+
+    // Check if the chart has already been rendered
+    if (!chartRendered) {
+      donutChart = new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions,
+      });
+      chartRendered = true; // Update the variable to indicate chart has been rendered
+    } else {
+      // Update the existing chart data
+      if (donutChart) {
+        donutChart.data.datasets[0].data = [(enquiry_count - registered_count), registered_count];
+        donutChart.update(); // Update the chart
+      }
+    }
+  }
+
+  var Chart2; // Declare the donutChart variable outside the drawchart function
+
+  function drawchart2(counsellor_name_list, counsellor_registeration_count) {
+  // Get the canvas element
+      var chart2Canvas = $('#Chart2').get(0).getContext('2d');
+
+      // Update the chart data
+      var chart2Data = {
+        labels: counsellor_name_list,
+        datasets: [
+          {
+            data: counsellor_registeration_count,
+            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          }
+        ]
+      };
+
+      // Update the chart options
+      var chart2Options = {
+        maintainAspectRatio: false,
+        responsive: true,
+      };
+
+      // Check if the chart has already been initialized
+      if (typeof Chart2 !== 'undefined') {
+        // Update the existing chart with new data and options
+        Chart2.data = chart2Data;
+        Chart2.options = chart2Options;
+        Chart2.update();
+      } else {
+        // Initialize a new chart
+        Chart2 = new Chart(chart2Canvas, {
+          type: 'doughnut',
+          data: chart2Data,
+          options: chart2Options
+        });
+      }
+    }
+  </script>
+
+  {% endblock custom_js %}

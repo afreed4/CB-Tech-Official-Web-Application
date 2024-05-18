@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Registration Form</title>
+</head>
+<body>
+  <div class="container">
+    <span class="logo">
+  </div>
+    <form id="msform" action="register"  method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <br><br>
+        <ul id="progressbar" class="width">
+          <li class="active">Personal Details</li>
+          <li>Address </li>
+          <li class>Qualifications</li>
+          <li>Other Details</li>
+        </ul>
+        <fieldset>
+        <h2 class="title">Personal Details</h2>
+          <div class="input-field">
+            <div class="input-field">
+              <label>Contact Number</label>
+              <input type="text" id="phone_number" placeholder="Phone Number" name="phone_num" required maxlength="15">
+              <!-- <input type="numeric" name="phone_num" id="phone_number"  placeholder="Enter contact number" required> -->
+          </div>
+            <label>Full name</label>
+            <input type="text" name="name" id="name" placeholder="Enter full name" required class="text">
+        </div>
+        <div class="input-field">
+            <label>E-mail</label>
+            <input type="mail" name="email_id" id="email_id" placeholder="Enter your email" required>
+        </div>
+        <div class="input-field">
+          <label>Gender</label>
+          <select name="gender" required>
+              <option disabled selected>----select gender----</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+          </select>
+      </div>
+        <div class="input-field">
+            <label>Guardian name</label>
+            <input type="text" name="guardian_name" placeholder="Enter guardian name" required>
+        </div>  
+        <div class="input-field">
+            <label>Alternate Number</label>
+            <input type="numeric" id="alt_contact_num" name="alt_contact" placeholder="Enter alternate number" >
+        </div>
+          <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+        
+
+        {% comment %} Address Details {% endcomment %}
+        <fieldset>
+          <h2 class="title">Address Details</h2>
+          <div class="input-field">
+            <label>Address Lane</label>
+            <textarea name="address1" size="fixed" placeholder="Address"></textarea>
+        </div>
+      
+        <div class="input-field">
+            <label>District</label>
+            <input type="text" name="address4" placeholder="Enter your district" required>
+        </div>
+
+        <div class="input-field">
+          <label>State</label>
+          <input type="text" name="address3" placeholder="Enter your state" required>
+        </div>
+
+        <div class="input-field">
+            <label>Nationality</label>
+            <input type="text" name="address2" placeholder="Enter natioinality">
+        </div>
+
+
+        <div class="input-field">
+            <label>Zip Code</label>
+            <input type="text" name="address5" placeholder="Enter zip code" >
+        </div>
+          <input type="button" name="previous" class="previous action-button" value="Previous" />
+          <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+<fieldset>
+          <h2 class="title">Qualifications</h2>
+            <div class="input-field">
+              <label>College name</label>
+              <input type="text" name="college" placeholder="Enter your college name" required class="text">
+          </div>
+          <div class="input-field">
+              <label>Highest Qualification</label>
+              <input type="text" id="qualification" name="qualification" placeholder="Enter your Qualification" required>
+          </div>
+          <div class="input-field">
+            <label>Technical Skills</label>
+            <input type="text" id="tech" name="technical_skills" placeholder="Enter your Qualification" required>
+        </div>
+          <div class="input-field">
+              <label>Year of pass </label>
+              <!-- <input type="date" id="pass" name="pass_of_year" placeholder="Enter birth date" required> -->
+              <select name="pass_of_year" id="pass"></select>
+          </div>
+          <div class="input-field">
+            <label>Office </label>
+            <!-- <input type="date" id="pass" name="pass_of_year" placeholder="Enter birth date" required> -->
+            <select name="office" id="office"></select>
+        </div>
+          <div class="input-field">
+              <input type="hidden" id="id" name="id" required>
+          </div>
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+          </fieldset>
+
+        <fieldset>
+          <h2 class="title">Other Details</h2>
+        <div class="input-field">
+            <label>Photo </label>
+            <input type="file" id="image" name="photo" accept="image/*" value="./static/images/defaultstudent.png">
+        </div>
+      <div class="input-field">
+        <label>Mode of class</label>
+        <select name="mode" required>
+          <option disabled selected>----class type----</option>
+          <option value="online">Online</option>
+          <option value="offline">Offline</option>
+      </select>
+    </div>
+        <div class="input-field">
+            <label>Consultant Name</label>
+            <select name="consultant_name" id="consultant" required>
+                <option value="Afreed">Afreed1</option>
+                <option value="Afreed2">Afreed2</option>
+                <option value="Afreed3">Afreed3</option>
+                <option value="Afreed4">Afreed4</option>
+                <option value="Afreed5">Afreed5</option>
+          </select>
+        </div>
+        <div class="input-field">
+            <label>Reference Name </label>
+            <input type="text" name="reference_name" placeholder="Enter refered name" >
+        </div>
+        <div class="input-field">
+          <label>Reference Contact Name </label>
+          <input type="numeric" name="reference_num" placeholder="Enter contact number" >
+      </div>
+          <input type="button" name="previous" class="previous action-button" value="Previous" />
+          <button>Submit</button>
+        </fieldset>
+      </form>
+    </div>
+
+<script src="{% static 'js/reg.js' %}"></script>
+<script>
+  $(document).ready(function() {
+    var currentYear = new Date().getFullYear();                   //Year generator for enquiry registration chart dropdown
+
+    // Get the dropdown/select element
+    var dropdown = document.getElementById("pass");
+
+    // Loop through the years from 2015 to the current year
+    for (var year = 2010; year <= currentYear; year++) {
+    // Create an option element for each year
+    var option = document.createElement("option");
+    option.value = year;
+    option.text = year;
+
+    // Add the option to the dropdown/select element
+    dropdown.appendChild(option);
+    }
+
+    var dropdown1 = document.getElementById("consultant");
+
+    var user_choices = JSON.parse('{{ user_choices|safe }}');	
+
+
+    dropdown1.innerHTML = '';
+
+    var dropdown2 = document.getElementById("office");
+
+    office_list=['Kadavanthra','Trivandrum','Bangalore','Calicut']
+
+    for (let i=0;i<office_list.length;i++) {
+    // Create an option element for each year
+    var option = document.createElement("option");
+    option.value = office_list[i];
+    option.text = office_list[i];
+
+    if (year === currentYear) {
+      option.selected = true;
+    }
+
+    // Add the option to the dropdown/select element
+    dropdown2.appendChild(option);
+    }
+
+    // Loop through the data and create options for the dropdown
+    for (const [key, value] of Object.entries(user_choices)) {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = value;
+      dropdown1.appendChild(option);
+    }
+      
+  });
+  
+  </script>
+</body> 
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    {% include 'menu.html' %}
+    {% load static %}
+    <div>
+    {% for x in items %}
+        <a href="{{ x.image.url }}"><img style="height: 200px;" width="400px" src="{{ x.image.url }}"></a>
+    
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <div class="step-links">
+        {% if items.has_previous %}
+         <a href="?page=1">&laquo; First</a>
+         <a href="?page={{ items.previous_page_number }}">Previous</a>
+         {% endif %}
+
+         <span class="current">
+           Page {{ items.number }} of {{ items.paginator.num_pages }}
+         </span>
+
+         {% if items.has_next %}
+           <a href="?page={{ items.next_page_number }}">Next</a>
+           <a href="?page={{ items.paginator.num_pages }}"> Last &raquo;</a>
+           {% endif %}
+    </div>
+</div>
+</body>
+</html>

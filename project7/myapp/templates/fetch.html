@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="my_ul">
+
+    </ul>
+    <script>
+        $(document).ready(function(){
+            var ul=document.getElementById("my_ul")
+            fetch("get_data")
+            .then(response=>response.json())
+            .then(data=>{
+            data.data.forEach(item => {
+                let li=document.createElement('li')
+                li.textContent=item.email_id
+                ul.appendChild(li)
+            });
+            })
+            .catch(error=>console.error('Error',error))
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    {% extends 'base.html' %}
+    
+    {% block content %}
+  
+    {% for y in recent_data %}
+
+     <p>You have recently tried to edit Mr:{{ y.emp_name }}</p>
+
+    {% endfor %}
+
+    <h2 class="text-center">Employis</h2>
+   
+        <table class="table table-straped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in context %}
+                   <tr>
+                    <th scope="row">{{x.emp_name}}</th>
+                    <td>{{x.emp_contact}}</td>
+                    <td>{{x.emp_role}}</td>
+                    <td>{{x.emp_salary}}</td>
+                    <td>{{x.emp_email}}</td>
+                   <td>
+                    <a href="{% url 'edit' x.id %}"><button type="button" class="btn btn-primary">Edit</button></a>
+                    <a href="{% url 'delete' x.id %}"><button type="button" class="btn btn-danger">Remove</button></a>
+                   </td>
+                </tr> 
+                {% endfor %}
+            </tbody>
+        </table>
+        <a style="margin-left: 600px;" href="{% url 'create' %}"><button type="button" class="btn btn-info">Add Info</button></a>
+    
+    {% endblock %}
+</body>
+</html>

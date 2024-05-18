@@ -1,0 +1,167 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="icon" href={% static 'images/favicon1.png'%}>
+    <link rel="stylesheet" href={% static 'css/contacts1.css'%}>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/91e215cfbc.js" crossorigin="anonymous"></script> 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/91e215cfbc.js" crossorigin="anonymous"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"  ></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>About You</title>
+</head>
+<body>
+
+<form class="app-form-group" method="post"  action="enquiry">  
+    {% csrf_token %}
+<div class="container">
+	<div class="logo">
+		<img src="static\images\landscapeCB1.png">
+	</div>
+  <div class="navbar">
+        <nav></nav>
+    </div>
+    <div class="row">
+      <div class="col-1">
+        <h2>we<span>`ve</span> been waiting<br>for you</h2>
+      <h4>let us know about yourself <i class="fa-solid fa-heart"></i></h4>
+      </div>    
+    </div>
+    <div class="card">
+      <div class="inner">
+        <div class="form__group field">
+          <input type="input" class="form__field" placeholder="Name" name="Name" id='name' required autocomplete="given-name">
+          <label for="name" class="form__label">Name</label>
+        </div>
+
+        <div class="form__group field">
+          <input type="input" class="form__field" placeholder="email" name="email" id='email' required autocomplete="email">
+          <label for="name" class="form__label">E-mail</label>
+        </div>
+
+        <div class="form__group field">
+          <input type="input" class="form__field" placeholder="phone no" name="contact" id='contact' required autocomplete="off">
+          <label for="name" class="form__label">Contact</label>
+        </div>
+
+        <div class="form__group field">
+          <input type="input" class="form__field" placeholder="Alternate Phone No" name="altcontact" id='altcontact' required autocomplete="off">
+          <label for="name" class="form__label">Alternate Contact</label>
+        </div>
+
+
+        <div class="form__group field">
+          <input type="input" class="form__field" placeholder="Qualification" name="quali" id='quali' required autocomplete="off">
+          <label for="name" class="form__label">Qualification</label>
+        </div>
+
+        <div class="form__group field">
+          <select class="form__field" placeholder="year of pass" name="pass" id='pass' required autocomplete="off"></select>
+          <label for="name" class="form__label">Passout Year</label>
+        </div>
+
+        <div class="form__group field">
+          <input type="input" class="form__field" placeholder="skills" name="skills" id='skills' required autocomplete="off">
+          <label for="name" class="form__label">Technical Skills</label>
+        </div>
+        <div class="form__group field">
+          <select class="form__field" placeholder="year of pass" name="consultant" id='consultant' required autocomplete="off"></select>
+          <label for="name" class="form__label">Consultant Name</label>
+        </div>
+		<div class="form__group field">
+			<select class="form__field" placeholder="office" name="office" id='office' required autocomplete="off"></select>
+			<label for="name" class="form__label">Location</label>
+		</div>
+		<div class="app-form-group buttons">
+			<button class="app-form-button">Proceed</button>
+		  </div>
+					  
+		</div>
+		  <div class="col-2"> 
+			<ul class="sms">
+			  <li><a href="https://www.linkedin.com/company/cb-tech-/" class="socialContainer containerlinkdn">
+				<i class="fa-brands fa-linkedin"></i>
+			  </li>
+	
+			  <li><a href="https://www.instagram.com/cbtech_cochin/" class="socialContainer containerInsta">
+				<i class="fa-brands fa-instagram"></i>
+			  </li>
+			  <li><a href="https://www.facebook.com/cbtechkochi" class="socialContainer containerFB">
+				<i class="fa-brands fa-facebook"></i>
+			  </li>
+			  <li><a href="https://wa.me/918714614875" class="socialContainer containerWtsp">
+				<i class="fa-brands fa-whatsapp"></i>
+			  </li>
+		
+			</ul>
+			  </div>      
+		</div>
+		
+		
+	  </div>
+	</div>
+	<script>
+			  // Get the current year
+		  var currentYear = new Date().getFullYear();                   //Year generator for enquiry registration chart dropdown
+	
+		  // Get the dropdown/select element
+		  var dropdown = document.getElementById("pass");
+	
+		  // Loop through the years from 2015 to the current year
+		  for (var year = 2015; year <= currentYear; year++) {
+		  // Create an option element for each year
+		  var option = document.createElement("option");
+		  option.value = year;
+		  option.text = year;
+		  
+		  if (year === currentYear) {
+			option.selected = true;
+		  }
+	
+	
+		  // Add the option to the dropdown/select element
+		  dropdown.appendChild(option);
+		  }
+	
+		  var dropdown1 = document.getElementById("consultant");
+		  
+		  var user_choices = JSON.parse('{{ user_choices|safe }}');  
+		  console.log(user_choices)
+	
+		  dropdown1.innerHTML = '';
+	
+		  // Loop through the data and create options for the dropdown
+		  for (const [key, value] of Object.entries(user_choices)) {
+			const option = document.createElement('option');
+			option.value = key;
+			option.textContent = value;
+			dropdown1.appendChild(option);
+		  }
+
+		  var dropdown2 = document.getElementById("office");
+
+			office_choices = {'Kadavanthra':'Kadavanthra','Trivandrum':'Trivandrum'}
+
+
+			dropdown2.innerHTML = '';
+			for (const [key, value] of Object.entries(office_choices)) {
+				const option = document.createElement('option');
+				option.value = key;
+				option.textContent = value;
+				dropdown2.appendChild(option);
+			}
+	
+	
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	</body>
+	</html>

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'menu.html' %}
+    
+    {% block content %}
+    <h3>THIS IS FROM <h1>LIST</h1>!!!!!!</h3>
+     
+    {% for x in players_data %}
+       <h1>{{x.Name}}</h1>
+       <h3>{{x.Club}}</h3>
+       <h3>{{x.Number}}</h3>
+      
+       
+
+    {% endfor %}
+    {% endblock %}
+    <script src="/static/JavaScript/javascript.js"></script>
+</body>
+</html>

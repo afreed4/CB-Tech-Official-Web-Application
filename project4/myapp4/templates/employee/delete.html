@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h2 class="text-center">Successfully Removed</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="{% url 'list' %}"><button id="button" type="submit" class="btn btn-danger" value="Search">Back</button></a>
+    </form>
+     </form>
+    {% endblock %}
+</body>
+</html>

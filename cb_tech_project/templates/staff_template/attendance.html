@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+
+<body>
+    <body>
+        {% if result %}
+            <p>Got a value</p>
+        {% else %}
+            <p>No value</p>
+        {% endif %}
+    
+        {% if report %}
+           <p>Report found</p>
+           <a href="{% url 'attendance_report' result.id_of_attendence %}">Check Attendance</a>
+                <!-- You may display other details of each item here -->
+         
+        {% else %}
+            <p>No report found</p>
+        {% endif %}
+    </body>
+    
+</body>
+</html>

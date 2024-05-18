@@ -1,0 +1,118 @@
+{% extends 'admin_template/base_template.html' %}
+
+{% block page_title %}
+    Manage Registeration
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            
+            {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Registered Details</h3>
+                            {% if  query  %}
+                                <span>&emsp; &emsp; &emsp; &emsp; showing result for "{{ query }}"</span>
+                            {% endif %}
+
+                            <div class="card-tools">
+                                <form class="d-flex" method="get" action="/searchRegister/">
+                                <input type="search"  class="form-control float-right" placeholder="Search" name="q" {% if  query  %} value="{{ query }}" {% endif %}>
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                <th>Registration ID</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Counsellor Name</th>
+                                <th>Lead Type</th>
+                                <th>Status Of Enquiry</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% if searchRegister %}
+                                {% for x in searchRegister %}
+                                <tr>
+                                <td>{{ x.student_registration_id }}</td>
+                                <td>{{ x.name }}</td>
+                                <td>{{ x.phone_number }}</td>
+                                <td>{{ x.email_id }}</td>
+                                <td>{{ x.consultant_name }}</td>
+                                <td>{{ x.lead_type }}</td>
+                                <td>{{ x.status_of_enquiry }}</td>
+                                <td>
+                                    <a href="{% url 'edit_registeration' x.enquiry_id %}" class="btn btn-success">Edit</a>
+                                    <a href="{% url 'delete_enquiry' x.enquiry_id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                {% for reg in registered %}
+                                <tr>
+                                <td>{{ reg.student_registration_id }}</td>
+                                <td>{{ reg.name }}</td>
+                                <td>{{ reg.phone_number }}</td>
+                                <td>{{ reg.email_id }}</td>
+                                <td>{{ reg.consultant_name }}</td>
+                                <td>{{ reg.lead_type }}</td>
+                                <td>{{ reg.status_of_enquiry }}</td>
+                                <td>
+                                    <a href="{% url 'edit_registeration' reg.enquiry_id %}" class="btn btn-success">Edit</a> 
+                                    <a href="{% url 'delete_enquiry' reg.enquiry_id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            {% endif %}
+                            </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

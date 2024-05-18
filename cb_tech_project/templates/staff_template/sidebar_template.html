@@ -1,0 +1,89 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="{% url 'staff_home' %}" class="brand-link">
+        <img src="{% static 'images\landscapeCB1.png' %}" alt="StaffLTE Logo" class="brand-image"
+        style="opacity: 1.0">
+        <span class="brand-text font-weight-light">CBtech</span>
+      </a>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="{% url 'staff_home' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+            
+            <li class="nav-item">
+              {% url 'staff_home' as staff_home %}
+              <a href="{{ staff_home }}" class="nav-link {% if request.path == staff_home %} active {% endif %}">
+                <i class="nav-icon fa-solid fa-house-user"></i>
+                <p>
+                  Home
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'staff_add_enquiry' as add_enquiry %}
+              <a href="{{ add_enquiry }}" class="nav-link {% if request.path == add_student %} active {% endif %}">
+                <i class="nav-icon fa-solid fa-file-circle-plus"></i>
+                <p>
+                  Add Enquiry
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url  'staff_manage_enquiry'  as staff_manage_enquiry %}
+              <a href="{{ staff_manage_enquiry }}" class="nav-link {% if request.path == staff_take_attendance %} active {% endif %}">
+                <i class="nav-icon fa-solid fa-file-pen"></i>
+                <p>
+                  Manage Enquiry
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'staff_add_course' as add_course %}
+              <a href="{{ add_course }}" class="nav-link {% if request.path == staff_update_attendance %} active {% endif %}">
+                <i class="nav-icon fa-solid fa-file-circle-plus"></i>
+                <p>
+                  Add Course
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'staff_manage_course' as staff_manage_course %}
+              <a href="{{ staff_manage_course }}" class="nav-link {% if request.path == staff_update_attendance %} active {% endif %}">
+                <i class="nav-icon fa-solid fa-file-pen"></i>
+                <p>
+                  Manage Course
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+                </p>
+              </a>
+            </li>
+
+            
+
+
+
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>

@@ -1,0 +1,143 @@
+{% extends 'staff_template/base_template.html' %}
+
+{% block page_title %}
+    Add Enquiry
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Enquiry</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    {% url 'staff_add_enquiry_save' as action_path %}
+                    {% include 'admin_template/form_template.html' with messages=messages form=form action_path=action_path button_text="Add Enquiry" %}
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+    {% comment %} Checking if email and username already exists or not usin Ajax {% endcomment %}
+
+    <script>
+        $(document).ready(function(){
+            // keyup event will be triggered when user leaves keyboard
+            let check_email_url= "{% url 'check_email_exist' %}"
+            $("#id_email").keyup(function(){
+                var email = $(this).val();
+
+                if(email!=""){
+                    $.ajax({
+                        url :check_email_url ,
+                        type : 'POST',
+                        data : {email:email}
+                    })
+                    .done(function(response){
+                        //console.log(response);
+
+                        if(response == "True"){
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='color: red; padding: 5px; font-weight: bold;'> Email Not Available. </span>").insertAfter("#id_email")
+                        }
+                        else{
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='color: green; padding: 5px; font-weight: bold;'> Email Available. </span>").insertAfter("#id_email")
+                        }
+                    })
+
+                    .fail(function(){
+                        console.log("Failed");
+                    })
+                }
+                else{
+                    $(".email_error").remove();
+                }
+                
+            })
+
+            $("#id_username").keyup(function(){
+                var username = $(this).val();
+                var check_username_url='{% url 'check_username_exist' %}' 
+                if(username!=""){
+                    $.ajax({
+                        url : check_username_url,
+                        type : 'POST',
+                        data : {username:username}
+                    })
+                    .done(function(response){
+                        //console.log(response);
+
+                        if(response == "True"){
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: red; padding: 5px; font-weight: bold;'> Username Not Available. </span>").insertAfter("#id_username")
+                        }
+                        else{
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='color: green; padding: 5px; font-weight: bold;'> Username Available. </span>").insertAfter("#id_username")
+                        }
+                    })
+
+                    .fail(function(){
+                        console.log("Failed");
+                    })
+                }
+                else{
+                    $(".username_error").remove();
+                }
+                
+            })
+            $("#phone_number").on("focusout", function() {
+                var phoneNumber = $(this).val();
+                
+                var numericPhoneNumber = phoneNumber.replace(/\D/g, "");
+                
+                if (numericPhoneNumber.length !== 10) {
+                    alert("Phone number must contain 10 digits.");
+                } else {
+                    $(this).val(numericPhoneNumber);
+                }
+            });
+            $("#phone_number1").on("focusout", function() {
+                var phoneNumber1 = $(this).val();
+                
+                var numericPhoneNumber1 = phoneNumber1.replace(/\D/g, "");
+                
+                if (numericPhoneNumber1.length !== 10) {
+                    alert("Phone number must contain 10 digits.");
+                } else {
+                    $(this).val(numericPhoneNumber1);
+                }
+            });
+            $("#phone_number2").on("focusout", function() {
+                var phoneNumber2 = $(this).val();
+                
+                var numericPhoneNumber2 = phoneNumber2.replace(/\D/g, "");
+                
+                if (numericPhoneNumber2.length !== 10) {
+                    alert("Phone number must contain 10 digits.");
+                } else {
+                    $(this).val(numericPhoneNumber2);
+                }
+            });
+        })
+    </script>
+
+  {% endblock custom_js %}

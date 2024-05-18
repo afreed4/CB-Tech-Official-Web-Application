@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% extends 'base.html' %}
+  {% block content %}
+    {% if request.user.is_authenticated %}
+      <h3>{{ request.user.username }}'s account has been created</h3>
+      <a href="{% url 'logout' %}">Log out</a>
+    {% else %}
+       <p>{{ error }}</p>
+      <button class="btn btn primary"> <a href="{% url 'login' %}">Login</a></button>
+      <button class="btn btn info"><a href="{% url 'sighnup' %}">Sighnup</a><br></button>
+
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

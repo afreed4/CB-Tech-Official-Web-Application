@@ -1,0 +1,120 @@
+{% extends 'admin_template/base_template.html' %}
+
+{% block page_title %}
+    Edit Course | #ID : {{ course.id }}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Course</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_course_save'  %}">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="courseId"> Course ID</label>
+                                <input type="text" name="courseId" class="form-control" id="courseId" value="{{ course.id }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="course">Name</label>
+                                <input type="text" name="course" class="form-control" id="name" value="{{ course.course_name }}" required>
+                            </div>
+                              <div class="form-group">
+                                <label for="course_type"> Type</label>
+                                <select class="form-control" id="course_type" name="course_type" required>
+                                  <option value="Full Time" {% if course.course_type == 'Full Time' %}selected{% endif%} >Full Time</option>
+                                  <option value="Crash" {% if course.course_type == 'Crash' %}selected{% endif%}>Crash</option>
+                                  <option value="Project" {% if course.course_type == 'Project' %}selected{% endif%}>Project </option>
+                                  <!-- Add more options for courses as needed -->
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="course_duration">Duration</label>
+                                <input type="text" class="form-control" id="duration" name="course_duration" value="{{ course.course_duration }}" required>
+                              </div>
+                        </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Update Course</button>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+      {% block custom_js %}
+      <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            // Get references to the course_type and duration elements
+            const courseTypeSelect = document.getElementById("course_type");
+            const durationInput = document.getElementById("duration");
+        
+            // Function to update the duration field based on the selected course type
+            function updateDurationField() {
+              const selectedCourseType = courseTypeSelect.value;
+        
+              // Define the course type durations (you can add more types and durations as needed)
+              const courseTypeDurations = {
+                "Full Time": "6 months",
+                "Crash": "2 weeks",
+                "Project": "4 months"
+                // Add more types and durations as needed
+              };
+        
+              // Update the duration field based on the selected course type
+              durationInput.value = courseTypeDurations[selectedCourseType] || "";
+            }
+        
+            // Add event listener to course_type select element
+            courseTypeSelect.addEventListener("change", updateDurationField);
+          });
+        </script>     
+      {% endblock custom_js %}
+
+  {% endblock main_content %}

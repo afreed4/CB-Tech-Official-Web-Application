@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'counsillor_regsiter' %}">counsillor regsiter</a><br>
+    <a href="{% url 'counsillor_login' %}">counsillor Login</a><br>
+    <a href="{% url 'faculty_register' %}">Faculty regsiter</a><br>
+    <a href="{% url 'faculty_login' %}">Faculty Login</a><br>
+    {% block content %}
+
+     {% endblock %}
+</body>
+</html>

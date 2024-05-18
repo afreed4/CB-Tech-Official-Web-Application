@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    
+
+    {% block content %}
+      <div class="container mt-5 mb-3">
+        <div class="row">
+            {% for x in posts %}
+             <div class="col-1g-4 my-4">
+                <div class="card shadow" style="width: 20rem; height: 33rem;">
+                    <img src="/media/{{ x.blog_img }}" class="card-img-top" height="250px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ x.title }}<br><small>by {{ x.author }}</small></h5>
+                        <p class="card-text">{{ x.content | truncatechars:210 }}</p>
+                        <a href="{% url 'blog_comment' x.slug %}" class="btn btn-primary">Read More 
+                            {% if user.is_superuser %}
+                             <a href="delete_blog_post/ {{ x.slug }}/" class="btn btn-danger mx-4">Delete Blog</a>
+                             {% endif %}</a>
+                    </div>
+                </div>
+             </div>
+             {% endfor %}
+        </div>
+      </div>
+    {% endblock %}
+</body>
+</html>

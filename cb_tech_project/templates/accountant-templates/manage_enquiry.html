@@ -1,0 +1,120 @@
+{% extends 'accountant-templates/base_template.html' %}
+
+{% block page_title %}
+    Manage Payments
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+            
+            
+            {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">All Registered Candidates</h3>
+                            {% if  query  %}
+                                <span>&emsp; &emsp; &emsp; &emsp; showing result for "{{ query }}"</span>
+                            {% endif %}
+
+                            <div class="card-tools">
+                                <form class="d-flex" method="get" action="/accountantsearchRegister/">
+                                    <input type="search"  class="form-control float-right" placeholder="Search" name="q" {% if  query  %} value="{{ query }}" {% endif %}>
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                <th>Registeration ID</th>
+                                <th>Name</th>
+                                <th>Status Of Payment</th>
+                                <th>Total Amount</th>
+                                <th>Outstanding Amount</th>
+                                <th>Next Due Date</th>
+                                <th>Date of Join</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if searchRegister %}
+                                {% for x in searchRegister %}
+                                 <tr>
+                                <td>{{ x.student_registration_id }}</td>
+                                <td>{{ x.name }}</td>
+                                <td>{{ x.payment_status }}</td>
+                                <td>{{ x.total_amount }}</td>
+                                <td>{{ x.outstanding_amount }}</td>
+                                <td>{{ x.next_due_date|date:'d-b-Y' }}</td>
+                                <td>{{ x.joined_date|date:'d-b-Y' }}</td>
+
+                                     <td>
+                                        <a href="{% url 'accountant_edit_enquiry' x.enquiry_id %}" class="btn btn-success">Edit</a>
+                                     </td>
+                                     {% endfor %}
+
+                                     {% else %}
+
+                                <td>
+                                {% for Enquiry in Enquiries %}
+                                <tr>
+                                <td>{{ Enquiry.student_registration_id }}</td>
+                                <td>{{ Enquiry.name }}</td>
+                                <td>{{ Enquiry.payment_status }}</td>
+                                <td>{{ Enquiry.total_amount }}</td>
+                                <td>{{ Enquiry.outstanding_amount }}</td>
+                                <td>{{ Enquiry.next_due_date|date:'d-b-Y' }}</td>
+                                <td>{{ Enquiry.joined_date|date:'d-b-Y' }}</td>
+
+                                <td>
+                                    <a href="{% url 'accountant_edit_enquiry' Enquiry.enquiry_id %}" class="btn btn-success">Edit</a> 
+                                </td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                            </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
